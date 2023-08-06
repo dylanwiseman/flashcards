@@ -1,4 +1,5 @@
 import { View, Text, Pressable, SafeAreaView } from "react-native";
+import { Heading } from "../components";
 import React, { useState } from "react";
 import getNewWords from "../utils/getNewWords";
 import { WordEntry } from "../utils/types";
@@ -19,7 +20,7 @@ export default function New() {
         <Text>Get New Words</Text>
       </Pressable>
 
-      <Text>New Words:</Text>
+      <Heading>New Words:</Heading>
       {newWords.map((word) => (
         <Text key={word.id}>{word.kanji[0]?.text || word.kana[0]?.text}</Text>
       ))}

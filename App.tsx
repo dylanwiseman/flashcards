@@ -2,6 +2,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
+import { GluestackUIProvider } from "./components";
+import { config } from "./gluestack-ui.config";
 import New from "./screens/New";
 import Studying from "./screens/Studying";
 import Archive from "./screens/Archive";
@@ -18,16 +20,18 @@ export default function App() {
   };
 
   return (
-    <NavigationContainer theme={theme}>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName="New"
-      >
-        <Stack.Screen name="New" component={New} />
-        <Stack.Screen name="Studying" component={Studying} />
-        <Stack.Screen name="Archive" component={Archive} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <GluestackUIProvider config={config.theme}>
+      <NavigationContainer theme={theme}>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false }}
+          initialRouteName="New"
+        >
+          <Stack.Screen name="New" component={New} />
+          <Stack.Screen name="Studying" component={Studying} />
+          <Stack.Screen name="Archive" component={Archive} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GluestackUIProvider>
   );
 }
 
