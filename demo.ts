@@ -4,7 +4,7 @@ if (module === require.main) {
   (async function main() {
     const jmdictPromise = setupJmdict(
       "my-jmdict-simplified-db",
-      "jmdict-eng-3.1.0.json"
+      "jmdict-eng-common-3.5.0.json"
     );
     const { db } = await jmdictPromise;
     // This `db` is used by all functions in this API, so hang on to it.

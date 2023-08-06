@@ -1,5 +1,5 @@
 import { WordEntry, MyJsonObject } from "./types";
-import jsonDicData from "../jmdict-eng-3.5.0.json";
+import jsonDicData from "../jmdict-eng-common-3.5.0.json";
 
 export default function getNewWords(numberOfWords: number): WordEntry[] {
   try {
