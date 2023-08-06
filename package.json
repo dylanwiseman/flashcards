@@ -17,6 +17,7 @@
     "jmdict-simplified-node": "^1.1.2",
     "react": "18.2.0",
     "react-native": "0.72.3",
+    "react-native-fs": "^2.20.0",
     "react-navigation": "^4.4.4"
   },
   "devDependencies": {
