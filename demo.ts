@@ -9,7 +9,7 @@ if (module === require.main) {
     const { db } = await jmdictPromise;
     // This `db` is used by all functions in this API, so hang on to it.
     // You only need to run `setup`/`setupJmdict` ONCE in your app, to get this `db`.
-    const results = await readingBeginning(db, "あおい", 3);
+    const results = await readingBeginning(db, "あく", 3);
     console.dir(results, { depth: null });
   })();
 }
