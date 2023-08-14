@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import getNewWords from "../utils/getNewWords";
 import { WordEntry } from "../utils/types";
 import Flashcard from "../components/Flashcard";
+import Card from "../components/Card";
 
 export default function New() {
   const [newWords, setNewWords] = useState<WordEntry[]>([]);
@@ -26,11 +27,12 @@ export default function New() {
         <Text key={word.id}>{word.kanji[0]?.text || word.kana[0]?.text}</Text>
       ))}
       {newWords.map((word) => (
-        <Flashcard
-          key={word.id}
-          word={word.kanji[0]?.text || word.kana[0]?.text}
-          definition={word.sense[0].gloss[0].text}
-        />
+        // <Flashcard
+        //   key={word.id}
+        //   word={word.kanji[0]?.text || word.kana[0]?.text}
+        //   definition={word.sense[0].gloss[0].text}
+        // />
+        <Card />
       ))}
     </SafeAreaView>
   );
