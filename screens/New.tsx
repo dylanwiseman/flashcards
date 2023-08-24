@@ -4,16 +4,20 @@ import React, { useState } from "react";
 import getNewWords from "../utils/getNewWords";
 import { WordEntry } from "../utils/types";
 import Flashcard from "../components/Flashcard";
-import Card from "../components/Card";
+import Swiper from "react-native-swiper";
 
 export default function New() {
-  const [newWords, setNewWords] = useState<WordEntry[]>([]);
+  const [newWords, setNewWords] = useState<WordEntry[]>(getNewWords(3));
 
   const handleGetNewWords = () => {
     const numberOfWords = 3; // Change this to the desired number of new words
     const words: WordEntry[] = getNewWords(numberOfWords);
     setNewWords(words);
   };
+
+  console.log(newWords[0]);
+  console.log(newWords[1]);
+  console.log(newWords[2]);
 
   return (
     <SafeAreaView>
@@ -23,17 +27,21 @@ export default function New() {
       </Pressable>
 
       <Heading>New Words:</Heading>
-      {newWords.map((word) => (
-        <Text key={word.id}>{word.kanji[0]?.text || word.kana[0]?.text}</Text>
-      ))}
-      {newWords.map((word) => (
-        // <Flashcard
-        //   key={word.id}
-        //   word={word.kanji[0]?.text || word.kana[0]?.text}
-        //   definition={word.sense[0].gloss[0].text}
-        // />
-        <Card />
-      ))}
+      {newWords[0] && (
+        <View style={{ height: 500 }}>
+          <Swiper loop={false}>
+            {newWords.map((word) => (
+              <View style={{ height: 200, backgroundColor: "blue" }}>
+                <Flashcard
+                  key={word.id}
+                  word={word.kanji[0]?.text || word.kana[0]?.text}
+                  definition={word.sense[0].gloss[0].text}
+                />
+              </View>
+            ))}
+          </Swiper>
+        </View>
+      )}
     </SafeAreaView>
   );
 }

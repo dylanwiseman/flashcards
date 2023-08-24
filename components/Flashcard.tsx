@@ -66,12 +66,14 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, definition }) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    margin: "auto",
+    padding: 10,
+    // justifyContent: "flex-start",
   },
   item: {
-    width: 200,
-    height: 100,
+    width: "100%",
+    height: 200,
     backgroundColor: "white",
     borderRadius: 8,
     borderColor: "black",
