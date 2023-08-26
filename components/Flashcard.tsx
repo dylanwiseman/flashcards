@@ -8,11 +8,12 @@ import {
 } from "react-native";
 
 interface FlashcardProps {
-  word: string;
+  kanji: string;
+  kana: string;
   definition: string;
 }
 
-const Flashcard: React.FC<FlashcardProps> = ({ word, definition }) => {
+const Flashcard: React.FC<FlashcardProps> = ({ kanji, kana, definition }) => {
   //TODO: figure out how to make this thing flip
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -56,7 +57,16 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, definition }) => {
           ]}
         >
           <View style={styles.content}>
-            <Text>{isFlipped ? definition : word}</Text>
+            {isFlipped ? (
+              <View>
+                <Text>{definition}</Text>
+              </View>
+            ) : (
+              <View style={{ display: "flex", flexDirection: "column" }}>
+                <Text>{kanji}</Text>
+                <Text>{kana}</Text>
+              </View>
+            )}
           </View>
         </Animated.View>
       </TouchableOpacity>

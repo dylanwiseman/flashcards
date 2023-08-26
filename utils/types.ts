@@ -49,6 +49,38 @@ export interface MyJsonObject {
   words: WordEntry[];
 }
 
+export interface InputData {
+  id: string;
+  kanji: { common: boolean; text: string; tags: any[] }[];
+  kana: {
+    common: boolean;
+    text: string;
+    tags: any[];
+    appliesToKanji: string[];
+  }[];
+  sense: {
+    partOfSpeech: string[];
+    appliesToKanji: string[];
+    appliesToKana: string[];
+    related: string[];
+    antonym: string[];
+    field: string[];
+    dialect: string[];
+    misc: string[];
+    info: string[];
+    languageSource: string[];
+    gloss: { lang: string; gender: null; type: null; text: string }[];
+  }[];
+}
+
+export interface OutputData {
+  id: string;
+  kanji: string;
+  kana: string;
+  partOfSpeech: string;
+  definition: string;
+}
+
 /* HERE'S AN EXAMPLE:
   
   const exampleWordEntry: WordEntry = {

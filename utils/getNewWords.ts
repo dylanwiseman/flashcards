@@ -1,7 +1,7 @@
-import { WordEntry, MyJsonObject } from "./types";
+import { WordEntry, MyJsonObject, OutputData, InputData } from "./types";
 import jsonDicData from "../jmdict-eng-common-3.5.0.json";
 
-export default function getNewWords(numberOfWords: number): WordEntry[] {
+export default function getNewWords(numberOfWords: number): OutputData[] {
   try {
     const jsonData: MyJsonObject = jsonDicData as MyJsonObject;
 
@@ -18,7 +18,28 @@ export default function getNewWords(numberOfWords: number): WordEntry[] {
       newWords.push(wordObj);
     }
 
-    return newWords;
+    function transformData(input: InputData): OutputData {
+      const kanjiText = input.kanji[0]?.text || "";
+      const kanaText = input.kana[0]?.text || "";
+      const partOfSpeech = input.sense[0]?.partOfSpeech[0] || "";
+      const definition = input.sense[0]?.gloss.map((g) => g.text).join(", ");
+
+      const output: OutputData = {
+        id: input.id,
+        kanji: kanjiText,
+        kana: kanaText,
+        partOfSpeech: partOfSpeech,
+        definition: definition,
+      };
+
+      return output;
+    }
+
+    let outputWords = newWords.map((word) => {
+      return transformData(word);
+    });
+
+    return outputWords;
   } catch (error) {
     console.error("Error reading or processing JSON file:", error);
     return [];

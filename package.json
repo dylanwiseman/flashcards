@@ -24,7 +24,8 @@
     "react-native-gesture-handler": "^2.12.1",
     "react-native-safe-area-context": "4.6.3",
     "react-native-swiper": "^1.6.0",
-    "react-navigation": "^4.4.4"
+    "react-navigation": "^4.4.4",
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
