@@ -30,6 +30,7 @@ export default function getNewWords(numberOfWords: number): OutputData[] {
         kana: kanaText,
         partOfSpeech: partOfSpeech,
         definition: definition,
+        star: false,
       };
 
       return output;

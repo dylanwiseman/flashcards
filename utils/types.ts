@@ -79,6 +79,7 @@ export interface OutputData {
   kana: string;
   partOfSpeech: string;
   definition: string;
+  star: boolean;
 }
 
 /* HERE'S AN EXAMPLE:

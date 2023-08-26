@@ -11,9 +11,15 @@ interface FlashcardProps {
   kanji: string;
   kana: string;
   definition: string;
+  star: boolean;
 }
 
-const Flashcard: React.FC<FlashcardProps> = ({ kanji, kana, definition }) => {
+const Flashcard: React.FC<FlashcardProps> = ({
+  kanji,
+  kana,
+  definition,
+  star,
+}) => {
   //TODO: figure out how to make this thing flip
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -62,11 +68,22 @@ const Flashcard: React.FC<FlashcardProps> = ({ kanji, kana, definition }) => {
                 <Text>{definition}</Text>
               </View>
             ) : (
-              <View style={{ display: "flex", flexDirection: "column" }}>
-                <Text>{kanji}</Text>
-                <Text>{kana}</Text>
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={styles.kanji}>{kanji}</Text>
+                <Text style={!kanji && styles.kanji}>{kana}</Text>
               </View>
             )}
+          </View>
+          <View style={styles.starContainer}>
+            <Text style={{ ...styles.star, color: star ? "#FFF1C1" : "white" }}>
+              ★
+            </Text>
           </View>
         </Animated.View>
       </TouchableOpacity>
@@ -97,6 +114,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  kanji: {
+    fontSize: 32,
+    fontWeight: "bold",
+  },
+  star: {
+    fontSize: 36, // Adjust the size of the star as needed
+    // Color of the star
+  },
+  starContainer: {
+    position: "absolute",
+    top: 12,
+    right: 12,
   },
 });
 
