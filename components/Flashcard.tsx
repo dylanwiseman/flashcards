@@ -109,6 +109,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backfaceVisibility: "hidden",
     position: "absolute",
+    // shadowColor: "black",
+    // shadowOffset: { width: 2, height: 2 },
   },
   content: {
     flex: 1,

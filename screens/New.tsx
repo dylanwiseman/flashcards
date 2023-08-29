@@ -23,8 +23,6 @@ export default function New() {
   };
 
   console.log(util.inspect(newWords[0], false, null, true /* enable colors */));
-  console.log(newWords[1]);
-  console.log(newWords[2]);
 
   return (
     <SafeAreaView>
