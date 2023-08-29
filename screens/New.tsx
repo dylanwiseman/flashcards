@@ -13,7 +13,7 @@ export default function New() {
   const [newWords, setNewWords] = useState<OutputData[]>(getNewWords(10));
 
   const handleGetNewWords = () => {
-    const numberOfWords = 3; // Change this to the desired number of new words
+    const numberOfWords = 10; // Change this to the desired number of new words
     const words: OutputData[] = getNewWords(numberOfWords);
     setNewWords(words);
   };

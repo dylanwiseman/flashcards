@@ -65,7 +65,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
           <View style={styles.content}>
             {isFlipped ? (
               <View>
-                <Text>{definition}</Text>
+                <Text style={styles.def}>{definition}</Text>
               </View>
             ) : (
               <View
@@ -76,7 +76,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
                 }}
               >
                 <Text style={styles.kanji}>{kanji}</Text>
-                <Text style={!kanji && styles.kanji}>{kana}</Text>
+                <Text style={!kanji ? styles.kanji : styles.kana}>{kana}</Text>
               </View>
             )}
           </View>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   item: {
     width: "100%",
-    height: 200,
+    height: 500,
     backgroundColor: "white",
     borderRadius: 8,
     borderColor: "black",
@@ -116,14 +116,20 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    padding: 12,
   },
   kanji: {
-    fontSize: 32,
+    fontSize: 64,
     fontWeight: "bold",
   },
+  kana: {
+    fontSize: 32,
+  },
+  def: {
+    fontSize: 32,
+  },
   star: {
-    fontSize: 36, // Adjust the size of the star as needed
-    // Color of the star
+    fontSize: 36,
   },
   starContainer: {
     position: "absolute",

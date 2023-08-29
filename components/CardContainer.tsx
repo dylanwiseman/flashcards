@@ -13,7 +13,7 @@ export default function CardContainer({ word }: any) {
   };
   return (
     <View>
-      <View style={{ height: 200 }}>
+      <View style={{ height: 500 }}>
         <Flashcard
           key={word.id}
           kanji={word.kanji || ""}
