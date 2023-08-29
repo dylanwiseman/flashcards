@@ -1,49 +1,53 @@
 import { View, Text, Pressable, SafeAreaView, StyleSheet } from "react-native";
 import { Heading } from "../components";
-import React, { useState } from "react";
-import getNewWords from "../utils/getNewWords";
+import React, { useState, useEffect } from "react";
+// import getNewWords from "../utils/getNewWords";
+import getFavorites from "../utils/getFavorites";
 import { OutputData } from "../utils/types";
-// import Flashcard from "../components/Flashcard";
 import Swiper from "react-native-swiper";
 import util from "util";
 import CardContainer from "../components/CardContainer";
 import { useNavigation } from "@react-navigation/native";
 
-export default function New() {
-  const [newWords, setNewWords] = useState<OutputData[]>(getNewWords(10));
+export default function Favorites() {
+  const [favoriteWords, setFavoriteWords] = useState<OutputData[]>([]);
+  console.log(favoriteWords);
 
-  const handleGetNewWords = () => {
-    const numberOfWords = 3; // Change this to the desired number of new words
-    const words: OutputData[] = getNewWords(numberOfWords);
-    setNewWords(words);
-  };
+  useEffect(() => {
+    const getFaves = async () => {
+      setFavoriteWords(await getFavorites());
+    };
+    getFaves();
+  }, []);
 
   const navigation = useNavigation();
 
   const handlePress = () => {
     // Navigate to the 'Favorites' screen when pressed
     // @ts-ignore
-    navigation.navigate("Favorites");
+    navigation.navigate("New");
   };
 
-  console.log(util.inspect(newWords[0], false, null, true /* enable colors */));
+  console.log(
+    util.inspect(favoriteWords[0], false, null, true /* enable colors */)
+  );
 
   return (
     <SafeAreaView>
       <Heading style={{ textAlign: "center", marginTop: 12 }}>
-        New Words:
+        Favorite Words:
       </Heading>
-      {newWords[0] && (
+      {favoriteWords[0] && (
         <View style={{ height: "90%", marginTop: 12 }}>
           <Swiper loop={false} style={{}}>
-            {newWords.map((word, key) => (
+            {favoriteWords.map((word, key) => (
               <CardContainer word={word} key={key} />
             ))}
           </Swiper>
         </View>
       )}
       <Pressable onPress={handlePress}>
-        <Text>Go to Favorites</Text>
+        <Text>Go to New</Text>
       </Pressable>
     </SafeAreaView>
   );

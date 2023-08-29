@@ -5,8 +5,8 @@ import { StyleSheet } from "react-native";
 import { GluestackUIProvider } from "./components";
 import { config } from "./gluestack-ui.config";
 import New from "./screens/New";
-import Studying from "./screens/Studying";
 import Archive from "./screens/Archive";
+import Favorites from "./screens/Favorites";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -27,7 +27,7 @@ export default function App() {
           initialRouteName="New"
         >
           <Stack.Screen name="New" component={New} />
-          <Stack.Screen name="Studying" component={Studying} />
+          <Stack.Screen name="Favorites" component={Favorites} />
           <Stack.Screen name="Archive" component={Archive} />
         </Stack.Navigator>
       </NavigationContainer>
