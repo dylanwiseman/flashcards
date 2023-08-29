@@ -21,7 +21,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   star,
 }) => {
   //TODO: figure out how to make this thing flip
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
   const frontInterpolate = new Animated.Value(0);
   const backInterpolate = new Animated.Value(180);

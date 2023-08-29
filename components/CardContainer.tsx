@@ -5,7 +5,7 @@ import { OutputData } from "../utils/types";
 import addToFavorites from "../utils/addToFavorites";
 
 export default function CardContainer({ word }: any) {
-  const [star, setStar] = useState(word.star);
+  const [star, setStar] = useState<boolean>(word.star);
   const handlePress = async (word: OutputData) => {
     word.star = !word.star;
     await addToFavorites(word);
