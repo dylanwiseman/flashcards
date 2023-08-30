@@ -30,10 +30,9 @@ export default function CardContainer({ word }: any) {
           justifyContent: "flex-end",
         }}
       >
-        <Pressable onPress={() => handlePress(word)} style={styles.container}>
-          {/* <Text style={styles.star2}>★</Text> */}
+        {/* <Pressable onPress={() => handlePress(word)} style={styles.container}>
           <Text style={styles.star}>★</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
     </View>
   );

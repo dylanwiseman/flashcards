@@ -8,10 +8,11 @@ import Swiper from "react-native-swiper";
 import util from "util";
 import CardContainer from "../components/CardContainer";
 import { useNavigation } from "@react-navigation/native";
+import NavBar from "../components/NavBar";
 
 export default function Favorites() {
   const [favoriteWords, setFavoriteWords] = useState<OutputData[]>([]);
-  console.log(favoriteWords);
+  //   console.log(favoriteWords);
 
   useEffect(() => {
     const getFaves = async () => {
@@ -23,32 +24,42 @@ export default function Favorites() {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    // Navigate to the 'Favorites' screen when pressed
     // @ts-ignore
     navigation.navigate("New");
   };
 
-  console.log(
-    util.inspect(favoriteWords[0], false, null, true /* enable colors */)
-  );
+  //   console.log(
+  //     util.inspect(favoriteWords[0], false, null, true /* enable colors */)
+  //   );
 
   return (
     <SafeAreaView>
       <Heading style={{ textAlign: "center", marginTop: 12 }}>
         Favorite Words:
       </Heading>
-      {favoriteWords[0] && (
-        <View style={{ height: "80%", marginTop: 12 }}>
+      {/* {favoriteWords[0] && ( */}
+      <View style={{ height: "80%", marginTop: 12 }}>
+        {favoriteWords[0] ? (
           <Swiper loop={false} style={{}}>
             {favoriteWords.map((word, key) => (
               <CardContainer word={word} key={key} />
             ))}
           </Swiper>
-        </View>
-      )}
-      <Pressable onPress={handlePress}>
-        <Text>Go to New</Text>
-      </Pressable>
+        ) : (
+          <CardContainer
+            word={{
+              id: "1322480",
+              kanji: "斜陽",
+              kana: "しゃう",
+              partOfSpeech: "n",
+              definition: "setting sun",
+              star: true,
+            }}
+          />
+        )}
+      </View>
+      {/* )} */}
+      <NavBar screen="favorites" handleNew={handlePress} />
     </SafeAreaView>
   );
 }

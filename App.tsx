@@ -23,7 +23,7 @@ export default function App() {
     <GluestackUIProvider config={config.theme}>
       <NavigationContainer theme={theme}>
         <Stack.Navigator
-          screenOptions={{ headerShown: false }}
+          screenOptions={{ headerShown: false, animationEnabled: false }}
           initialRouteName="New"
         >
           <Stack.Screen name="New" component={New} />
