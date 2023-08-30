@@ -38,7 +38,7 @@ export default function Favorites() {
         Favorite Words:
       </Heading>
       {favoriteWords[0] && (
-        <View style={{ height: "90%", marginTop: 12 }}>
+        <View style={{ height: "80%", marginTop: 12 }}>
           <Swiper loop={false} style={{}}>
             {favoriteWords.map((word, key) => (
               <CardContainer word={word} key={key} />
