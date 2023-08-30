@@ -28,6 +28,16 @@ export default function Favorites() {
     navigation.navigate("New");
   };
 
+  const renderPagination = (index: number, total: number, context: any) => {
+    return (
+      <View style={styles.paginationStyle}>
+        <Text style={{ color: "grey" }}>
+          <Text style={styles.paginationText}>{index + 1}</Text>/{total}
+        </Text>
+      </View>
+    );
+  };
+
   //   console.log(
   //     util.inspect(favoriteWords[0], false, null, true /* enable colors */)
   //   );
@@ -40,7 +50,7 @@ export default function Favorites() {
       {/* {favoriteWords[0] && ( */}
       <View style={{ height: "80%", marginTop: 12 }}>
         {favoriteWords[0] ? (
-          <Swiper loop={false} style={{}}>
+          <Swiper loop={false} style={{}} renderPagination={renderPagination}>
             {favoriteWords.map((word, key) => (
               <CardContainer word={word} key={key} />
             ))}
@@ -65,6 +75,15 @@ export default function Favorites() {
 }
 
 const styles = StyleSheet.create({
+  paginationStyle: {
+    position: "absolute",
+    top: "80%",
+    left: "48%",
+  },
+  paginationText: {
+    color: "grey",
+    // fontSize: 20,
+  },
   // container: {
   //   backgroundColor: "#FFD700",
   //   margin: 24,

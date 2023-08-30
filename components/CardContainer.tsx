@@ -1,15 +1,15 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import Flashcard from "./Flashcard";
 import { OutputData } from "../utils/types";
 import addToFavorites from "../utils/addToFavorites";
 
 export default function CardContainer({ word }: any) {
-  const [star, setStar] = useState<boolean>(word.star);
-  const handlePress = async (word: OutputData) => {
+  const [fav, setFav] = useState<boolean>(word.star);
+  const handleFav = async (word: OutputData) => {
     word.star = !word.star;
     await addToFavorites(word);
-    setStar(word.star);
+    setFav(word.star);
   };
   return (
     <View>
@@ -19,7 +19,8 @@ export default function CardContainer({ word }: any) {
           kanji={word.kanji || ""}
           kana={word.kana || ""}
           definition={word.definition}
-          star={star}
+          fav={fav}
+          handleFav={() => handleFav(word)}
         />
       </View>
       <View
@@ -29,11 +30,7 @@ export default function CardContainer({ word }: any) {
           flexDirection: "row",
           justifyContent: "flex-end",
         }}
-      >
-        {/* <Pressable onPress={() => handlePress(word)} style={styles.container}>
-          <Text style={styles.star}>★</Text>
-        </Pressable> */}
-      </View>
+      ></View>
     </View>
   );
 }

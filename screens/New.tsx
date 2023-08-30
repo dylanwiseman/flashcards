@@ -1,29 +1,22 @@
-import { View, Text, Pressable, SafeAreaView, StyleSheet } from "react-native";
+import { View, SafeAreaView, StyleSheet } from "react-native";
 import { Heading } from "../components";
 import React, { useState } from "react";
 import getNewWords from "../utils/getNewWords";
 import { OutputData } from "../utils/types";
 import Swiper from "react-native-swiper";
-import util from "util";
+// import util from "util";
 import CardContainer from "../components/CardContainer";
 import { useNavigation } from "@react-navigation/native";
-import Svg, { Path } from "react-native-svg";
+// import Svg, { Path } from "react-native-svg";
 import NavBar from "../components/NavBar";
 
 export default function New() {
-  const [newWords, setNewWords] = useState<OutputData[]>(getNewWords(10));
+  const [newWords, setNewWords] = useState<OutputData[]>(getNewWords(200));
 
   const handleGetNewWords = () => {
-    const numberOfWords = 10;
-    const words: OutputData[] = getNewWords(numberOfWords);
-    setNewWords(words);
-  };
-
-  const navigation = useNavigation();
-
-  const handlePress = () => {
-    // @ts-ignore
-    navigation.navigate("Favorites");
+    // const numberOfWords = 10;
+    // const words: OutputData[] = getNewWords(numberOfWords);
+    // setNewWords(words);
   };
 
   // console.log(util.inspect(newWords[0], false, null, true /* enable colors */));
@@ -35,7 +28,13 @@ export default function New() {
       </Heading>
       {newWords[0] && (
         <View style={{ height: "80%", marginTop: 12 }}>
-          <Swiper loop={false} style={{}}>
+          <Swiper
+            loop={false}
+            style={{}}
+            loadMinimal
+            loadMinimalSize={10}
+            showsPagination={false}
+          >
             {newWords.map((word, key) => (
               <CardContainer word={word} key={key} />
             ))}
