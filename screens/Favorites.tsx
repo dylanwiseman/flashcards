@@ -1,5 +1,4 @@
 import { View, Text, Pressable, SafeAreaView, StyleSheet } from "react-native";
-import { Heading } from "../components";
 import React, { useState, useEffect } from "react";
 // import getNewWords from "../utils/getNewWords";
 import getFavorites from "../utils/getFavorites";
@@ -44,9 +43,9 @@ export default function Favorites() {
 
   return (
     <SafeAreaView>
-      <Heading style={{ textAlign: "center", marginTop: 12 }}>
+      <Text style={{ textAlign: "center", marginTop: 12 }}>
         Favorite Words:
-      </Heading>
+      </Text>
       {/* {favoriteWords[0] && ( */}
       <View style={{ height: "80%", marginTop: 12 }}>
         {favoriteWords[0] ? (

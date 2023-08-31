@@ -1,5 +1,4 @@
-import { View, SafeAreaView, StyleSheet } from "react-native";
-import { Heading } from "../components";
+import { View, SafeAreaView, StyleSheet, Text } from "react-native";
 import React, { useState } from "react";
 import getNewWords from "../utils/getNewWords";
 import { OutputData } from "../utils/types";
@@ -23,9 +22,7 @@ export default function New() {
 
   return (
     <SafeAreaView>
-      <Heading style={{ textAlign: "center", marginTop: 12 }}>
-        New Words:
-      </Heading>
+      <Text style={{ textAlign: "center", marginTop: 12 }}>New Words:</Text>
       {newWords[0] && (
         <View style={{ height: "80%", marginTop: 12 }}>
           <Swiper
