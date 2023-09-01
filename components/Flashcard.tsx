@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Svg, { Path } from "react-native-svg";
 import {
   View,
@@ -28,62 +28,107 @@ const Flashcard: React.FC<FlashcardProps> = ({
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   // const [heart, setHeart] = useState<boolean>(fav);
 
-  const frontInterpolate = new Animated.Value(0);
-  const backInterpolate = new Animated.Value(180);
+  const flipAnim = useRef(new Animated.Value(0)).current;
 
-  const frontFlip = frontInterpolate.interpolate({
-    inputRange: [0, 180],
-    outputRange: ["0deg", "180deg"],
-  });
-
-  const backFlip = backInterpolate.interpolate({
-    inputRange: [0, 180],
-    outputRange: ["180deg", "360deg"],
-  });
-
-  const flipCard = () => {
-    setIsFlipped((prevIsFlipped) => !prevIsFlipped);
-    Animated.spring(frontInterpolate, {
-      toValue: isFlipped ? 180 : 0,
-      friction: 8,
-      tension: 10,
-      useNativeDriver: true,
-    }).start();
-
-    Animated.spring(backInterpolate, {
-      toValue: isFlipped ? 360 : 180,
+  const frontFlip = () => {
+    Animated.spring(flipAnim, {
+      toValue: 1,
       friction: 8,
       tension: 10,
       useNativeDriver: true,
     }).start();
   };
 
+  const backFlip = () => {
+    // Will change fadeAnim value to 0 in 3 seconds
+    Animated.spring(flipAnim, {
+      toValue: 0,
+      friction: 8,
+      tension: 10,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const flipCard = () => {
+    setIsFlipped(!isFlipped);
+    frontFlip();
+    // backFlip();
+  };
+
   return (
     <View style={styles.wrapper}>
       <TouchableOpacity onPress={flipCard} activeOpacity={0.8}>
         <Animated.View
+          id="back"
           style={[
             styles.item,
-            { transform: [{ rotateY: isFlipped ? backFlip : frontFlip }] },
+            {
+              transform: [
+                { perspective: 1000 }, // Add perspective for 3D effect
+                // { rotateY: isFlipped ? backFlip : frontFlip },
+                {
+                  rotateY: flipAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ["180deg", "270deg"],
+                  }),
+                },
+              ],
+              backfaceVisibility: isFlipped ? "visible" : "hidden",
+            },
           ]}
         >
           <View style={styles.content}>
-            {isFlipped ? (
-              <View>
-                <Text style={styles.def}>{definition}</Text>
-              </View>
-            ) : (
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={styles.kanji}>{kanji}</Text>
-                <Text style={!kanji ? styles.kanji : styles.kana}>{kana}</Text>
-              </View>
-            )}
+            <View>
+              <Text style={styles.def}>{definition}</Text>
+            </View>
+          </View>
+          <Pressable
+            onPress={async () => {
+              await handleFav();
+            }}
+            style={styles.heartContainer}
+          >
+            <Svg width={35} height={35} viewBox="0 0 35 35">
+              <Path
+                d="M24.85,10.126c2.018-4.783,6.628-8.125,11.99-8.125c7.223,0,12.425,6.179,13.079,13.543
+              c0,0,0.353,1.828-0.424,5.119c-1.058,4.482-3.545,8.464-6.898,11.503L24.85,48L7.402,32.165c-3.353-3.038-5.84-7.021-6.898-11.503
+              c-0.777-3.291-0.424-5.119-0.424-5.119C0.734,8.179,5.936,2,13.159,2C18.522,2,22.832,5.343,24.85,10.126z"
+                fill={fav ? "#D75A4A" : "lightgray"}
+                scale=".7"
+              />
+            </Svg>
+          </Pressable>
+        </Animated.View>
+        <Animated.View
+          id="front"
+          style={[
+            styles.item,
+            {
+              transform: [
+                { perspective: 1000 }, // Add perspective for 3D effect
+                // { rotateY: isFlipped ? backFlip : frontFlip },
+                {
+                  rotateY: flipAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ["0deg", "180deg"],
+                  }),
+                },
+              ],
+              backfaceVisibility: isFlipped ? "hidden" : "visible",
+            },
+          ]}
+        >
+          <View style={styles.content}>
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Text style={styles.kanji}>{kanji}</Text>
+              <Text style={!kanji ? styles.kanji : styles.kana}>{kana}</Text>
+            </View>
           </View>
           <Pressable
             onPress={async () => {
@@ -123,7 +168,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
-    backfaceVisibility: "hidden",
     position: "absolute",
     // shadowColor: "black",
     // shadowOffset: { width: 2, height: 2 },
