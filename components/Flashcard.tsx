@@ -24,16 +24,18 @@ const Flashcard: React.FC<FlashcardProps> = ({
   fav,
   handleFav,
 }) => {
-  //TODO: figure out how to make this thing flip
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   // const [heart, setHeart] = useState<boolean>(fav);
 
   const flipAnim = useRef(new Animated.Value(0)).current;
+  //@ts-ignore
+  flipAnim.addListener(({ value }) => (this._value = value));
+  //@ts-ignore
 
   const frontFlip = () => {
     Animated.spring(flipAnim, {
       toValue: 1,
-      friction: 8,
+      friction: 5,
       tension: 10,
       useNativeDriver: true,
     }).start();
@@ -43,33 +45,32 @@ const Flashcard: React.FC<FlashcardProps> = ({
     // Will change fadeAnim value to 0 in 3 seconds
     Animated.spring(flipAnim, {
       toValue: 0,
-      friction: 8,
+      friction: 5,
       tension: 10,
       useNativeDriver: true,
     }).start();
   };
 
   const flipCard = () => {
+    //@ts-ignore
+    flipAnim._value > 0.5 ? backFlip() : frontFlip();
     setIsFlipped(!isFlipped);
-    frontFlip();
-    // backFlip();
   };
 
   return (
     <View style={styles.wrapper}>
-      <TouchableOpacity onPress={flipCard} activeOpacity={0.8}>
+      <Pressable onPress={flipCard}>
         <Animated.View
           id="back"
           style={[
             styles.item,
             {
               transform: [
-                { perspective: 1000 }, // Add perspective for 3D effect
-                // { rotateY: isFlipped ? backFlip : frontFlip },
+                { perspective: 1000 },
                 {
                   rotateY: flipAnim.interpolate({
                     inputRange: [0, 1],
-                    outputRange: ["180deg", "270deg"],
+                    outputRange: ["180deg", "360deg"],
                   }),
                 },
               ],
@@ -99,14 +100,14 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </Svg>
           </Pressable>
         </Animated.View>
+
         <Animated.View
           id="front"
           style={[
             styles.item,
             {
               transform: [
-                { perspective: 1000 }, // Add perspective for 3D effect
-                // { rotateY: isFlipped ? backFlip : frontFlip },
+                { perspective: 1000 },
                 {
                   rotateY: flipAnim.interpolate({
                     inputRange: [0, 1],
@@ -114,7 +115,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
                   }),
                 },
               ],
-              backfaceVisibility: isFlipped ? "hidden" : "visible",
+              backfaceVisibility: "hidden",
             },
           ]}
         >
@@ -147,17 +148,15 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </Svg>
           </Pressable>
         </Animated.View>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    // alignItems: "center",
     margin: "auto",
     padding: 10,
-    // justifyContent: "flex-start",
   },
   item: {
     width: "100%",
