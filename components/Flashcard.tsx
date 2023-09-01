@@ -1,13 +1,7 @@
 import React, { useState, useRef } from "react";
 import Svg, { Path } from "react-native-svg";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Animated,
-  Pressable,
-} from "react-native";
+import { View, Text, StyleSheet, Animated, Pressable } from "react-native";
+import HeartSVG from "./HeartSVG";
 
 interface FlashcardProps {
   kanji: string;
@@ -25,12 +19,10 @@ const Flashcard: React.FC<FlashcardProps> = ({
   handleFav,
 }) => {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
-  // const [heart, setHeart] = useState<boolean>(fav);
 
   const flipAnim = useRef(new Animated.Value(0)).current;
   //@ts-ignore
   flipAnim.addListener(({ value }) => (this._value = value));
-  //@ts-ignore
 
   const frontFlip = () => {
     Animated.spring(flipAnim, {
@@ -42,7 +34,6 @@ const Flashcard: React.FC<FlashcardProps> = ({
   };
 
   const backFlip = () => {
-    // Will change fadeAnim value to 0 in 3 seconds
     Animated.spring(flipAnim, {
       toValue: 0,
       friction: 5,
@@ -89,15 +80,13 @@ const Flashcard: React.FC<FlashcardProps> = ({
             }}
             style={styles.heartContainer}
           >
-            <Svg width={35} height={35} viewBox="0 0 35 35">
-              <Path
-                d="M24.85,10.126c2.018-4.783,6.628-8.125,11.99-8.125c7.223,0,12.425,6.179,13.079,13.543
-              c0,0,0.353,1.828-0.424,5.119c-1.058,4.482-3.545,8.464-6.898,11.503L24.85,48L7.402,32.165c-3.353-3.038-5.84-7.021-6.898-11.503
-              c-0.777-3.291-0.424-5.119-0.424-5.119C0.734,8.179,5.936,2,13.159,2C18.522,2,22.832,5.343,24.85,10.126z"
-                fill={fav ? "#D75A4A" : "lightgray"}
-                scale=".7"
-              />
-            </Svg>
+            <HeartSVG
+              width={35}
+              height={35}
+              scale={0.7}
+              fill="#D75A4A"
+              fav={fav}
+            />
           </Pressable>
         </Animated.View>
 
@@ -137,15 +126,13 @@ const Flashcard: React.FC<FlashcardProps> = ({
             }}
             style={styles.heartContainer}
           >
-            <Svg width={35} height={35} viewBox="0 0 35 35">
-              <Path
-                d="M24.85,10.126c2.018-4.783,6.628-8.125,11.99-8.125c7.223,0,12.425,6.179,13.079,13.543
-              c0,0,0.353,1.828-0.424,5.119c-1.058,4.482-3.545,8.464-6.898,11.503L24.85,48L7.402,32.165c-3.353-3.038-5.84-7.021-6.898-11.503
-              c-0.777-3.291-0.424-5.119-0.424-5.119C0.734,8.179,5.936,2,13.159,2C18.522,2,22.832,5.343,24.85,10.126z"
-                fill={fav ? "#D75A4A" : "lightgray"}
-                scale=".7"
-              />
-            </Svg>
+            <HeartSVG
+              width={35}
+              height={35}
+              scale={0.7}
+              fill="#D75A4A"
+              fav={fav}
+            />
           </Pressable>
         </Animated.View>
       </Pressable>
