@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
-import Svg, { Path } from "react-native-svg";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import { View, Text, StyleSheet, Animated, Pressable } from "react-native";
 import HeartSVG from "./HeartSVG";
+import { InvertContext } from "../utils/Context";
 
 interface FlashcardProps {
   kanji: string;
@@ -18,7 +18,8 @@ const Flashcard: React.FC<FlashcardProps> = ({
   fav,
   handleFav,
 }) => {
-  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+  const inversion = useContext(InvertContext);
+  const [isFlipped, setIsFlipped] = useState<boolean>(inversion.inverted);
 
   const flipAnim = useRef(new Animated.Value(0)).current;
   //@ts-ignore
@@ -47,6 +48,16 @@ const Flashcard: React.FC<FlashcardProps> = ({
     flipAnim._value > 0.5 ? backFlip() : frontFlip();
     setIsFlipped(!isFlipped);
   };
+
+  const didMount = useRef(false);
+
+  useEffect(() => {
+    if (didMount.current) {
+      //@ts-ignore
+      flipAnim._value > 0.5 ? backFlip() : frontFlip();
+      setIsFlipped(inversion.inverted);
+    } else didMount.current = true;
+  }, [inversion.inverted]);
 
   return (
     <View style={styles.wrapper}>

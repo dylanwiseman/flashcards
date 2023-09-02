@@ -1,14 +1,16 @@
 // import { StatusBar } from "expo-status-bar";
+import { useState, createContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import New from "./screens/New";
 import Archive from "./screens/Archive";
 import Favorites from "./screens/Favorites";
+import { InvertContext } from "./utils/Context";
 
 export default function App() {
   const Stack = createStackNavigator();
-
+  const [invert, setInvert] = useState(false);
   const theme = {
     ...DefaultTheme,
     colors: {
@@ -19,14 +21,23 @@ export default function App() {
 
   return (
     <NavigationContainer theme={theme}>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false, animationEnabled: false }}
-        initialRouteName="New"
+      <InvertContext.Provider
+        value={{
+          inverted: invert,
+          invertCards: () => {
+            setInvert(!invert);
+          },
+        }}
       >
-        <Stack.Screen name="New" component={New} />
-        <Stack.Screen name="Favorites" component={Favorites} />
-        <Stack.Screen name="Archive" component={Archive} />
-      </Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false, animationEnabled: false }}
+          initialRouteName="New"
+        >
+          <Stack.Screen name="New" component={New} />
+          <Stack.Screen name="Favorites" component={Favorites} />
+          <Stack.Screen name="Archive" component={Archive} />
+        </Stack.Navigator>
+      </InvertContext.Provider>
     </NavigationContainer>
   );
 }

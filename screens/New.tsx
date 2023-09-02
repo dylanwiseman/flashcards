@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 // import Svg, { Path } from "react-native-svg";
 import NavBar from "../components/NavBar";
 
-export default function New() {
+export default function New({ handleFlip }: any) {
   const [newWords, setNewWords] = useState<OutputData[]>(getNewWords(200));
 
   const handleGetNewWords = () => {
