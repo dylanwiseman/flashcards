@@ -19,8 +19,6 @@ export default function NavBar({ handleNew, screen }: any) {
         minWidth: "100%",
         justifyContent: "space-evenly",
         marginTop: 12,
-        borderTopColor: "lightgray",
-        borderTopWidth: 1,
         paddingTop: 24,
       }}
     >

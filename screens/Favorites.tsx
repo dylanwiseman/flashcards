@@ -11,7 +11,6 @@ import NavBar from "../components/NavBar";
 
 export default function Favorites() {
   const [favoriteWords, setFavoriteWords] = useState<OutputData[]>([]);
-  //   console.log(favoriteWords);
 
   useEffect(() => {
     const getFaves = async () => {
@@ -46,7 +45,6 @@ export default function Favorites() {
       <Text style={{ textAlign: "center", marginTop: 12 }}>
         Favorite Words:
       </Text>
-      {/* {favoriteWords[0] && ( */}
       <View style={{ height: "80%", marginTop: 12 }}>
         {favoriteWords[0] ? (
           <Swiper loop={false} style={{}} renderPagination={renderPagination}>
@@ -67,7 +65,6 @@ export default function Favorites() {
           />
         )}
       </View>
-      {/* )} */}
       <NavBar screen="favorites" handleNew={handlePress} />
     </SafeAreaView>
   );
@@ -81,25 +78,5 @@ const styles = StyleSheet.create({
   },
   paginationText: {
     color: "grey",
-    // fontSize: 20,
   },
-  // container: {
-  //   backgroundColor: "#FFD700",
-  //   margin: 24,
-  //   width: 75, // Adjust the size as needed
-  //   height: 75, // Adjust the size as needed
-  //   borderRadius: 5,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   position: "relative",
-  // },
-  // star: {
-  //   fontSize: 36, // Adjust the size of the star as needed
-  //   color: "#FFF1C1", // Color of the star
-  // },
-  // star2: {
-  //   position: "absolute",
-  //   fontSize: 42, // Adjust the size of the star as needed
-  //   color: "#D4AF37", // Color of the star
-  // },
 });

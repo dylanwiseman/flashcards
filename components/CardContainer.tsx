@@ -39,20 +39,20 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFD700",
     margin: 24,
-    width: 75, // Adjust the size as needed
-    height: 75, // Adjust the size as needed
+    width: 75,
+    height: 75,
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
   },
   star: {
-    fontSize: 36, // Adjust the size of the star as needed
-    color: "#FFF1C1", // Color of the star
+    fontSize: 36,
+    color: "#FFF1C1",
   },
   star2: {
     position: "absolute",
-    fontSize: 42, // Adjust the size of the star as needed
-    color: "#D4AF37", // Color of the star
+    fontSize: 42,
+    color: "#D4AF37",
   },
 });
