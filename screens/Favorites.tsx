@@ -41,11 +41,24 @@ export default function Favorites() {
   //   );
 
   return (
-    <SafeAreaView>
-      <Text style={{ textAlign: "center", marginTop: 12 }}>
+    <SafeAreaView
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+      }}
+    >
+      <Text
+        style={{
+          textAlign: "center",
+          marginTop: 12,
+          color: "gray",
+          paddingTop: 12,
+        }}
+      >
         Favorite Words:
       </Text>
-      <View style={{ height: "80%", marginTop: 12 }}>
+      <View style={{ height: "80%", marginTop: 0 }}>
         {favoriteWords[0] ? (
           <Swiper loop={false} style={{}} renderPagination={renderPagination}>
             {favoriteWords.map((word, key) => (
@@ -56,10 +69,10 @@ export default function Favorites() {
           <CardContainer
             word={{
               id: "1322480",
-              kanji: "斜陽",
-              kana: "しゃう",
+              kanji: "  ",
+              kana: "  ",
               partOfSpeech: "n",
-              definition: "setting sun",
+              definition: "  ",
               star: true,
             }}
           />
@@ -73,7 +86,7 @@ export default function Favorites() {
 const styles = StyleSheet.create({
   paginationStyle: {
     position: "absolute",
-    top: "80%",
+    top: "90%",
     left: "48%",
   },
   paginationText: {

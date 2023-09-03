@@ -15,7 +15,7 @@ export default function App() {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: "white",
+      background: "#1B1B1E",
     },
   };
 

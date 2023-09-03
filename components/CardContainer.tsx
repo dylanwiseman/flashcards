@@ -13,7 +13,7 @@ export default function CardContainer({ word }: any) {
   };
   return (
     <View>
-      <View style={{ height: 500 }}>
+      <View style={{ height: 500, paddingTop: 48 }}>
         <Flashcard
           key={word.id}
           kanji={word.kanji || ""}
@@ -35,24 +35,4 @@ export default function CardContainer({ word }: any) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFD700",
-    margin: 24,
-    width: 75,
-    height: 75,
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center",
-    position: "relative",
-  },
-  star: {
-    fontSize: 36,
-    color: "#FFF1C1",
-  },
-  star2: {
-    position: "absolute",
-    fontSize: 42,
-    color: "#D4AF37",
-  },
-});
+const styles = StyleSheet.create({});

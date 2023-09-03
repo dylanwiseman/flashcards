@@ -18,10 +18,25 @@ export default function New() {
   // console.log(util.inspect(newWords[0], false, null, true /* enable colors */));
 
   return (
-    <SafeAreaView>
-      <Text style={{ textAlign: "center", marginTop: 12 }}>New Words:</Text>
+    <SafeAreaView
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+      }}
+    >
+      <Text
+        style={{
+          textAlign: "center",
+          marginTop: 12,
+          color: "gray",
+          paddingTop: 12,
+        }}
+      >
+        New Words:
+      </Text>
       {newWords[0] && (
-        <View style={{ height: "80%", marginTop: 12 }}>
+        <View style={{ height: "80%", marginTop: 0 }}>
           <Swiper
             loop={false}
             style={{}}
