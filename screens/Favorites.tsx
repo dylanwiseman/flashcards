@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import getFavorites from "../utils/getFavorites";
 import { OutputData } from "../utils/types";
 import Swiper from "react-native-swiper";
-import util from "util";
+// import util from "util";
 import CardContainer from "../components/CardContainer";
 import { useNavigation } from "@react-navigation/native";
 import NavBar from "../components/NavBar";
