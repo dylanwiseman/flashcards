@@ -85,7 +85,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
               <Text style={styles.def}>{definition}</Text>
             </View>
           </View>
-          <Pressable
+          {/* <Pressable
             onPress={async () => {
               await handleFav();
             }}
@@ -98,7 +98,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
               fill="#D75A4A"
               fav={fav}
             />
-          </Pressable>
+          </Pressable> */}
         </Animated.View>
 
         <Animated.View
@@ -131,7 +131,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
               <Text style={!kanji ? styles.kanji : styles.kana}>{kana}</Text>
             </View>
           </View>
-          <Pressable
+          {/* <Pressable
             onPress={async () => {
               await handleFav();
             }}
@@ -144,8 +144,17 @@ const Flashcard: React.FC<FlashcardProps> = ({
               fill="#D75A4A"
               fav={fav}
             />
-          </Pressable>
+          </Pressable> */}
         </Animated.View>
+      </Pressable>
+      <Pressable
+        hitSlop={15}
+        onPress={async () => {
+          await handleFav();
+        }}
+        style={{ ...styles.heartContainer, bottom: 0, right: 30 }}
+      >
+        <HeartSVG width={35} height={35} scale={0.7} fill="#D75A4A" fav={fav} />
       </Pressable>
     </View>
   );
@@ -155,6 +164,8 @@ const styles = StyleSheet.create({
   wrapper: {
     margin: "auto",
     padding: 10,
+    height: 560,
+    position: "relative",
   },
   item: {
     width: "100%",
