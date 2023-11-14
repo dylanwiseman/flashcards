@@ -1,5 +1,6 @@
 import { WordEntry, MyJsonObject, OutputData, InputData } from "./types";
 import jsonDicData from "../jmdict-eng-common-3.5.0.json";
+import getPartOfSpeech from "./partOfSpeech";
 
 export default function getNewWords(numberOfWords: number): OutputData[] {
   try {
@@ -21,7 +22,8 @@ export default function getNewWords(numberOfWords: number): OutputData[] {
     function transformData(input: InputData): OutputData {
       const kanjiText = input.kanji[0]?.text || "";
       const kanaText = input.kana[0]?.text || "";
-      const partOfSpeech = input.sense[0]?.partOfSpeech[0] || "";
+      const partOfSpeech =
+        getPartOfSpeech(input.sense[0]?.partOfSpeech[0]) || "";
       const definition = input.sense[0]?.gloss.map((g) => g.text).join(", ");
 
       const output: OutputData = {

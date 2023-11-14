@@ -9,6 +9,7 @@ interface FlashcardProps {
   definition: string;
   fav: boolean;
   handleFav: any;
+  partOfSpeech: string;
 }
 
 const Flashcard: React.FC<FlashcardProps> = ({
@@ -17,6 +18,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   definition,
   fav,
   handleFav,
+  partOfSpeech,
 }) => {
   const inversion = useContext(InvertContext);
   const [isFlipped, setIsFlipped] = useState<boolean>(inversion.inverted);
@@ -83,6 +85,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
           <View style={styles.content}>
             <View>
               <Text style={styles.def}>{definition}</Text>
+              <Text style={styles.pos}>{partOfSpeech}</Text>
             </View>
           </View>
           {/* <Pressable
@@ -179,6 +182,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     shadowColor: "black",
     shadowOffset: { width: 10, height: 10 },
+  },
+  pos: {
+    fontSize: 16,
+    fontStyle: "italic",
+    textAlign: "center",
+    color: "#424248",
+    marginTop: 12,
   },
   content: {
     flex: 1,

@@ -5,6 +5,7 @@ import { OutputData } from "../utils/types";
 import addToFavorites from "../utils/addToFavorites";
 
 export default function CardContainer({ word }: any) {
+  console.log(word);
   const [fav, setFav] = useState<boolean>(word.star);
   const handleFav = async (word: OutputData) => {
     word.star = !word.star;
@@ -21,6 +22,7 @@ export default function CardContainer({ word }: any) {
           definition={word.definition}
           fav={fav}
           handleFav={() => handleFav(word)}
+          partOfSpeech={word?.partOfSpeech}
         />
       </View>
       <View
