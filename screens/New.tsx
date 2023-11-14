@@ -7,9 +7,10 @@ import CardContainer from "../components/CardContainer";
 import NavBar from "../components/NavBar";
 
 export default function New() {
-  const [newWords, setNewWords] = useState<OutputData[]>(getNewWords(200));
+  const [newWords, setNewWords] = useState<OutputData[]>(getNewWords(10));
 
   const handleGetNewWords = () => {
+    setNewWords(getNewWords(10));
     // const numberOfWords = 10;
     // const words: OutputData[] = getNewWords(numberOfWords);
     // setNewWords(words);
@@ -41,7 +42,7 @@ export default function New() {
             loop={false}
             style={{}}
             loadMinimal
-            loadMinimalSize={10}
+            loadMinimalSize={20}
             showsPagination={false}
           >
             {newWords.map((word, key) => (

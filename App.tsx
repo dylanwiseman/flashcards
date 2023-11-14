@@ -10,8 +10,6 @@ import { InvertContext } from "./utils/Context";
 
 // TO DO:
 // green reverse button needs to reverse ALL cards in the stack
-// heart button not working on english side (card flips when pressed)
-// add word type (noun, verb, etc)
 
 export default function App() {
   const Stack = createStackNavigator();
