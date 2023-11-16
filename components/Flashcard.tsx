@@ -153,7 +153,11 @@ const Flashcard: React.FC<FlashcardProps> = ({
       <Pressable
         hitSlop={15}
         onPress={async () => {
-          await handleFav();
+          try {
+            await handleFav();
+          } catch (error) {
+            console.log(error);
+          }
         }}
         style={{ ...styles.heartContainer, bottom: 0, right: 30 }}
       >

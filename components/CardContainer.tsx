@@ -7,9 +7,13 @@ import addToFavorites from "../utils/addToFavorites";
 export default function CardContainer({ word }: any) {
   const [fav, setFav] = useState<boolean>(word.star);
   const handleFav = async (word: OutputData) => {
-    word.star = !word.star;
-    await addToFavorites(word);
-    setFav(word.star);
+    try {
+      word.star = !word.star;
+      await addToFavorites(word);
+      setFav(word.star);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <View>

@@ -14,7 +14,11 @@ export default function Favorites() {
 
   useEffect(() => {
     const getFaves = async () => {
-      setFavoriteWords(await getFavorites());
+      try {
+        setFavoriteWords(await getFavorites());
+      } catch (error) {
+        console.log(error);
+      }
     };
     getFaves();
   }, []);

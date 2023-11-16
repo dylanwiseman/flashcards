@@ -4,12 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import New from "./screens/New";
-import Archive from "./screens/Archive";
 import Favorites from "./screens/Favorites";
 import { InvertContext } from "./utils/Context";
-
-// TO DO:
-// green reverse button needs to reverse ALL cards in the stack
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -38,7 +34,6 @@ export default function App() {
         >
           <Stack.Screen name="New" component={New} />
           <Stack.Screen name="Favorites" component={Favorites} />
-          <Stack.Screen name="Archive" component={Archive} />
         </Stack.Navigator>
       </InvertContext.Provider>
     </NavigationContainer>
