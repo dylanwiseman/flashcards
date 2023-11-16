@@ -45,7 +45,7 @@ export default function New() {
             loadMinimalSize={20}
             showsPagination={false}
           >
-            {newWords.map((word, key) => (
+            {newWords?.map((word, key) => (
               <CardContainer word={word} key={key} />
             ))}
           </Swiper>

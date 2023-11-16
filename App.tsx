@@ -13,7 +13,7 @@ export default function App() {
   const theme = {
     ...DefaultTheme,
     colors: {
-      ...DefaultTheme.colors,
+      ...DefaultTheme?.colors,
       background: "#1B1B1E",
     },
   };

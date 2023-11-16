@@ -1,10 +1,8 @@
 import { View, Text, Pressable, SafeAreaView, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
-// import getNewWords from "../utils/getNewWords";
 import getFavorites from "../utils/getFavorites";
 import { OutputData } from "../utils/types";
 import Swiper from "react-native-swiper";
-// import util from "util";
 import CardContainer from "../components/CardContainer";
 import { useNavigation } from "@react-navigation/native";
 import NavBar from "../components/NavBar";
@@ -27,14 +25,14 @@ export default function Favorites() {
 
   const handlePress = () => {
     // @ts-ignore
-    navigation.navigate("New");
+    navigation?.navigate("New");
   };
 
   const renderPagination = (index: number, total: number, context: any) => {
     return (
-      <View style={styles.paginationStyle}>
+      <View style={styles?.paginationStyle}>
         <Text style={{ color: "grey" }}>
-          <Text style={styles.paginationText}>{index + 1}</Text>/{total}
+          <Text style={styles?.paginationText}>{index + 1}</Text>/{total}
         </Text>
       </View>
     );
@@ -65,7 +63,7 @@ export default function Favorites() {
       <View style={{ height: "80%", marginTop: 0 }}>
         {favoriteWords[0] ? (
           <Swiper loop={false} style={{}} renderPagination={renderPagination}>
-            {favoriteWords.map((word, key) => (
+            {favoriteWords?.map((word, key) => (
               <CardContainer word={word} key={key} />
             ))}
           </Swiper>

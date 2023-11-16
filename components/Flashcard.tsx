@@ -21,14 +21,14 @@ const Flashcard: React.FC<FlashcardProps> = ({
   partOfSpeech,
 }) => {
   const inversion = useContext(InvertContext);
-  const [isFlipped, setIsFlipped] = useState<boolean>(inversion.inverted);
+  const [isFlipped, setIsFlipped] = useState<boolean>(inversion?.inverted);
 
   const flipAnim = useRef(new Animated.Value(0)).current;
   //@ts-ignore
-  flipAnim.addListener(({ value }) => (this._value = value));
+  flipAnim?.addListener(({ value }) => (this?._value = value));
 
   const frontFlip = () => {
-    Animated.spring(flipAnim, {
+    Animated?.spring(flipAnim, {
       toValue: 1,
       friction: 5,
       tension: 10,
@@ -37,7 +37,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   };
 
   const backFlip = () => {
-    Animated.spring(flipAnim, {
+    Animated?.spring(flipAnim, {
       toValue: 0,
       friction: 5,
       tension: 10,
@@ -47,32 +47,32 @@ const Flashcard: React.FC<FlashcardProps> = ({
 
   const flipCard = () => {
     //@ts-ignore
-    flipAnim._value > 0.5 ? backFlip() : frontFlip();
+    flipAnim?._value > 0.5 ? backFlip() : frontFlip();
     setIsFlipped(!isFlipped);
   };
 
   const didMount = useRef(false);
 
   useEffect(() => {
-    if (didMount.current) {
+    if (didMount?.current) {
       //@ts-ignore
-      flipAnim._value > 0.5 ? backFlip() : frontFlip();
-      setIsFlipped(inversion.inverted);
+      flipAnim?._value > 0.5 ? backFlip() : frontFlip();
+      setIsFlipped(inversion?.inverted);
     } else didMount.current = true;
-  }, [inversion.inverted]);
+  }, [inversion?.inverted]);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles?.wrapper}>
       <Pressable onPress={flipCard}>
         <Animated.View
           id="back"
           style={[
-            styles.item,
+            styles?.item,
             {
               transform: [
                 { perspective: 1000 },
                 {
-                  rotateY: flipAnim.interpolate({
+                  rotateY: flipAnim?.interpolate({
                     inputRange: [0, 1],
                     outputRange: ["180deg", "360deg"],
                   }),
@@ -82,10 +82,10 @@ const Flashcard: React.FC<FlashcardProps> = ({
             },
           ]}
         >
-          <View style={styles.content}>
+          <View style={styles?.content}>
             <View>
-              <Text style={styles.def}>{definition}</Text>
-              <Text style={styles.pos}>{partOfSpeech}</Text>
+              <Text style={styles?.def}>{definition}</Text>
+              <Text style={styles?.pos}>{partOfSpeech}</Text>
             </View>
           </View>
           {/* <Pressable
@@ -107,12 +107,12 @@ const Flashcard: React.FC<FlashcardProps> = ({
         <Animated.View
           id="front"
           style={[
-            styles.item,
+            styles?.item,
             {
               transform: [
                 { perspective: 1000 },
                 {
-                  rotateY: flipAnim.interpolate({
+                  rotateY: flipAnim?.interpolate({
                     inputRange: [0, 1],
                     outputRange: ["0deg", "180deg"],
                   }),
@@ -122,7 +122,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             },
           ]}
         >
-          <View style={styles.content}>
+          <View style={styles?.content}>
             <View
               style={{
                 display: "flex",
@@ -130,15 +130,15 @@ const Flashcard: React.FC<FlashcardProps> = ({
                 alignItems: "center",
               }}
             >
-              <Text style={styles.kanji}>{kanji}</Text>
-              <Text style={!kanji ? styles.kanji : styles.kana}>{kana}</Text>
+              <Text style={styles?.kanji}>{kanji}</Text>
+              <Text style={!kanji ? styles?.kanji : styles?.kana}>{kana}</Text>
             </View>
           </View>
           {/* <Pressable
             onPress={async () => {
               await handleFav();
             }}
-            style={styles.heartContainer}
+            style={styles?.heartContainer}
           >
             <HeartSVG
               width={35}
@@ -159,7 +159,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             console.log(error);
           }
         }}
-        style={{ ...styles.heartContainer, bottom: 0, right: 30 }}
+        style={{ ...styles?.heartContainer, bottom: 0, right: 30 }}
       >
         <HeartSVG width={35} height={35} scale={0.7} fill="#D75A4A" fav={fav} />
       </Pressable>
@@ -167,7 +167,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet?.create({
   wrapper: {
     margin: "auto",
     padding: 10,

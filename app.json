@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "flashcards",
+    "name": "JPFC",
     "slug": "flashcards",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#F8F4E3"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.dylanwiseman.flashcards"
