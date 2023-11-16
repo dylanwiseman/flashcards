@@ -24,8 +24,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   const [isFlipped, setIsFlipped] = useState<boolean>(inversion?.inverted);
 
   const flipAnim = useRef(new Animated.Value(0)).current;
-  //@ts-ignore
-  flipAnim?.addListener(({ value }) => (this?._value = value));
+  flipAnim?.addListener(({ value }) => (this._value = value));
 
   const frontFlip = () => {
     Animated?.spring(flipAnim, {
@@ -46,7 +45,6 @@ const Flashcard: React.FC<FlashcardProps> = ({
   };
 
   const flipCard = () => {
-    //@ts-ignore
     flipAnim?._value > 0.5 ? backFlip() : frontFlip();
     setIsFlipped(!isFlipped);
   };
@@ -55,7 +53,6 @@ const Flashcard: React.FC<FlashcardProps> = ({
 
   useEffect(() => {
     if (didMount?.current) {
-      //@ts-ignore
       flipAnim?._value > 0.5 ? backFlip() : frontFlip();
       setIsFlipped(inversion?.inverted);
     } else didMount.current = true;

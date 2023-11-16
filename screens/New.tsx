@@ -11,12 +11,7 @@ export default function New() {
 
   const handleGetNewWords = () => {
     setNewWords(getNewWords(10));
-    // const numberOfWords = 10;
-    // const words: OutputData[] = getNewWords(numberOfWords);
-    // setNewWords(words);
   };
-
-  // console.log(util.inspect(newWords[0], false, null, true /* enable colors */));
 
   return (
     <SafeAreaView

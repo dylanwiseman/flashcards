@@ -24,7 +24,6 @@ export default function Favorites() {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    // @ts-ignore
     navigation?.navigate("New");
   };
 

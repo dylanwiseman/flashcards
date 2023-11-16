@@ -7,8 +7,19 @@ import New from "./screens/New";
 import Favorites from "./screens/Favorites";
 import { InvertContext } from "./utils/Context";
 
+export type RootStackParamList = {
+  New: undefined;
+  Favorites: undefined;
+};
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+
 export default function App() {
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<RootStackParamList>();
   const [invert, setInvert] = useState(false);
   const theme = {
     ...DefaultTheme,

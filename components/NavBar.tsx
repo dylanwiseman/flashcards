@@ -7,7 +7,6 @@ import { InvertContext } from "../utils/Context";
 export default function NavBar({ handleNew, screen }: any) {
   const navigation = useNavigation();
   const handleFav = () => {
-    // @ts-ignore
     navigation?.navigate("Favorites");
   };
   const inversion = useContext(InvertContext);
