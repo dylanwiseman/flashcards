@@ -86,7 +86,7 @@ export default function Favorites() {
 const styles = StyleSheet.create({
   paginationStyle: {
     position: "absolute",
-    top: "90%",
+    top: "95%",
     left: "48%",
   },
   paginationText: {
