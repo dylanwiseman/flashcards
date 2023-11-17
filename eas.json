@@ -9,6 +9,7 @@
     },
     "preview": {
       "channel": "staging",
+      "node": "16.18.1",
       "distribution": "internal",
       "ios": {
         "simulator": true

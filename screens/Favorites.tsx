@@ -60,7 +60,7 @@ export default function Favorites() {
         Favorite Words:
       </Text>
       <View style={{ height: "80%", marginTop: 0 }}>
-        {favoriteWords[0] ? (
+        {favoriteWords?.length > 0 ? (
           <Swiper loop={false} style={{}} renderPagination={renderPagination}>
             {favoriteWords?.map((word, key) => (
               <CardContainer word={word} key={key} />

@@ -8,11 +8,11 @@ export default function CardContainer({ word }: any) {
   const [fav, setFav] = useState<boolean>(word?.star);
   const handleFav = async (word: OutputData) => {
     try {
-      word.star = !word.star;
+      word.star = !word?.star;
       await addToFavorites(word);
       setFav(word.star);
     } catch (error) {
-      console.log(error);
+      console.warn(error);
     }
   };
   return (

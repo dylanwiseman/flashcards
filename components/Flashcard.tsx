@@ -24,7 +24,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   const [isFlipped, setIsFlipped] = useState<boolean>(inversion?.inverted);
 
   const flipAnim = useRef(new Animated.Value(0)).current;
-  flipAnim?.addListener(({ value }) => (this._value = value));
+  flipAnim.addListener(({ value }) => {});
 
   const frontFlip = () => {
     Animated?.spring(flipAnim, {
@@ -45,7 +45,8 @@ const Flashcard: React.FC<FlashcardProps> = ({
   };
 
   const flipCard = () => {
-    flipAnim?._value > 0.5 ? backFlip() : frontFlip();
+    //@ts-ignore
+    flipAnim._value > 0.5 ? backFlip() : frontFlip();
     setIsFlipped(!isFlipped);
   };
 
@@ -53,7 +54,8 @@ const Flashcard: React.FC<FlashcardProps> = ({
 
   useEffect(() => {
     if (didMount?.current) {
-      flipAnim?._value > 0.5 ? backFlip() : frontFlip();
+      //@ts-ignore
+      flipAnim._value > 0.5 ? backFlip() : frontFlip();
       setIsFlipped(inversion?.inverted);
     } else didMount.current = true;
   }, [inversion?.inverted]);
@@ -85,20 +87,6 @@ const Flashcard: React.FC<FlashcardProps> = ({
               <Text style={styles?.pos}>{partOfSpeech}</Text>
             </View>
           </View>
-          {/* <Pressable
-            onPress={async () => {
-              await handleFav();
-            }}
-            style={styles.heartContainer}
-          >
-            <HeartSVG
-              width={35}
-              height={35}
-              scale={0.7}
-              fill="#D75A4A"
-              fav={fav}
-            />
-          </Pressable> */}
         </Animated.View>
 
         <Animated.View
@@ -131,20 +119,6 @@ const Flashcard: React.FC<FlashcardProps> = ({
               <Text style={!kanji ? styles?.kanji : styles?.kana}>{kana}</Text>
             </View>
           </View>
-          {/* <Pressable
-            onPress={async () => {
-              await handleFav();
-            }}
-            style={styles?.heartContainer}
-          >
-            <HeartSVG
-              width={35}
-              height={35}
-              scale={0.7}
-              fill="#D75A4A"
-              fav={fav}
-            />
-          </Pressable> */}
         </Animated.View>
       </Pressable>
       <Pressable

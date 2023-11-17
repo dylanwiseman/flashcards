@@ -10,7 +10,7 @@ export default function getNewWords(numberOfWords: number): OutputData[] {
       throw new Error('Invalid JSON file or empty "words" array.');
     }
 
-    const { words } = jsonData;
+    const { words } = jsonData || [];
     const newWords: WordEntry[] = [];
 
     while (newWords?.length < numberOfWords && words?.length > 0) {
@@ -24,7 +24,9 @@ export default function getNewWords(numberOfWords: number): OutputData[] {
       const kanaText = input?.kana[0]?.text || "";
       const partOfSpeech =
         getPartOfSpeech(input?.sense[0]?.partOfSpeech[0]) || "";
-      const definition = input?.sense[0]?.gloss?.map((g) => g?.text).join(", ");
+      const definition = input?.sense[0]?.gloss
+        ?.map((g) => g?.text)
+        ?.join(", ");
 
       const output: OutputData = {
         id: input?.id,
@@ -44,7 +46,7 @@ export default function getNewWords(numberOfWords: number): OutputData[] {
 
     return outputWords;
   } catch (error) {
-    console.error("Error reading or processing JSON file:", error);
+    console.warn("Error reading or processing JSON file:", error);
     return [];
   }
 }

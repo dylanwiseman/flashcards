@@ -31,7 +31,7 @@ export default function New() {
       >
         New Words:
       </Text>
-      {newWords[0] && (
+      {newWords?.length > 0 && (
         <View style={{ height: "80%", marginTop: 0 }}>
           <Swiper
             loop={false}
